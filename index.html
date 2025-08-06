@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maroua ZBIDA - Consultante QHSE Freelance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .profile-header {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: slideInDown 0.8s ease;
+        }
+        
+        .tagline {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+            animation: slideInUp 0.8s ease;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .contact-info a:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37,99,235,0.3);
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 40px;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        section:nth-child(even) {
+            background: var(--light);
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .service-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        /* Expertise Pills */
+        .expertise-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .expertise-pill {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.3);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Projects Section */
+        .projects-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .project-item {
+            background: var(--white);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .project-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .project-item h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .company-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .achievement {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        
+        /* Pricing Section */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'POPULAIRE';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--white);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8em;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 2.5em;
+            color: var(--dark);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .price span {
+            font-size: 0.5em;
+            color: #666;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .cta-section h2 {
+            color: var(--white);
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section h2::after {
+            display: none;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 20px 10px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: var(--accent);
+            color: var(--white);
+        }
+        
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            nav ul { gap: 20px; }
+            section { padding: 40px 20px; }
+            .cta-section h2 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-header">
+                <h1>Maroua ZBIDA</h1>
+                <p class="tagline">Consultante QHSE Indépendante | ISO 9001, 14001, 45001</p>
+                <p class="tagline">Votre partenaire pour l'excellence opérationnelle et la conformité</p>
+                <div class="contact-info">
+                    <span>📧 <a href="mailto:zbidamaroua2001@gmail.com">zbidamaroua2001@gmail.com</a></span>
+                    <span>📱 +33 6 05 51 01 13</span>
+                    <span>📍 Toulouse & Île-de-France</span>
+                </div>
+            </div>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#realisations">Réalisations</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <section id="services">
+            <h2>Services Premium</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🎯 Audit & Conformité</h3>
+                    <ul>
+                        <li>Audits internes ISO 9001, 14001, 45001</li>
+                        <li>Préparation aux certifications</li>
+                        <li>Diagnostic de conformité réglementaire</li>
+                        <li>Plan d'actions correctives</li>
+                        <li>Accompagnement post-audit</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>📊 Système de Management</h3>
+                    <ul>
+                        <li>Mise en place SMQ/SME/SMS intégré</li>
+                        <li>Rédaction de procédures et modes opératoires</li>
+                        <li>Cartographie des processus</li>
+                        <li>Tableaux de bord QHSE</li>
+                        <li>Digitalisation documentaire</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>⚠️ Prévention des Risques</h3>
+                    <ul>
+                        <li>Évaluation des risques professionnels</li>
+                        <li>Document Unique (DUERP)</li>
+                        <li>Analyses AMDEC process</li>
+                        <li>Plans de prévention</li>
+                        <li>Simulations ALOHA (fuites gaz)</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🎓 Formation & Sensibilisation</h3>
+                    <ul>
+                        <li>Formation aux normes ISO</li>
+                        <li>Sensibilisation sécurité sur site</li>
+                        <li>Formation SST</li>
+                        <li>Ateliers amélioration continue</li>
+                        <li>E-learning personnalisé</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🔍 Enquêtes & Analyses</h3>
+                    <ul>
+                        <li>Enquêtes accidents/incidents</li>
+                        <li>Analyse des causes profondes</li>
+                        <li>Méthode 5M, QQOQCP</li>
+                        <li>REX et capitalisation</li>
+                        <li>Indicateurs de performance</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🌱 RSE & Environnement</h3>
+                    <ul>
+                        <li>Bilan carbone simplifié</li>
+                        <li>Gestion des déchets</li>
+                        <li>Conformité environnementale</li>
+                        <li>Économie circulaire</li>
+                        <li>Reporting RSE</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="expertise">
+            <h2>Domaines d'Expertise</h2>
+            <div class="expertise-container">
+                <span class="expertise-pill">ISO 9001:2015</span>
+                <span class="expertise-pill">ISO 14001:2015</span>
+                <span class="expertise-pill">ISO 45001:2018</span>
+                <span class="expertise-pill">AMDEC</span>
+                <span class="expertise-pill">PDCA</span>
+                <span class="expertise-pill">5M / QQOQCP</span>
+                <span class="expertise-pill">Évaluation des risques</span>
+                <span class="expertise-pill">ALOHA</span>
+                <span class="expertise-pill">Power BI</span>
+                <span class="expertise-pill">SharePoint</span>
+                <span class="expertise-pill">MS Project</span>
+                <span class="expertise-pill">SST</span>
+                <span class="expertise-pill">Audit interne</span>
+                <span class="expertise-pill">Ergonomie</span>
+            </div>
+        </section>
+        
+        <section id="realisations">
+            <h2>Réalisations Concrètes</h2>
+            <div class="projects-timeline">
+                <div class="project-item">
+                    <span class="company-badge">HONEYWELL Building Solutions</span>
+                    <h3>Transformation du Système QHSE</h3>
+                    <p>Refonte complète du système documentaire pour une multinationale leader en solutions bâtiment.</p>
+                    <div class="achievement">✨ 98% de conformité aux audits ISO</div>
+                    <div class="achievement">👥 30+ collaborateurs formés</div>
+                    <div class="achievement">📈 Réduction de 40% des non-conformités</div>
+                </div>
+                
+                <div class="project-item">
+                    <span class="company-badge">SPIE Industrie</span>
+                    <h3>Pilotage Innovation & Méthodes</h3>
+                    <p>Management de projets d'innovation industrielle avec focus sur la sécurité et la performance.</p>
+                    <div class="achievement">🚀 3 projets innovants déployés</div>
+                    <div class="achievement">⏱️ Gain de productivité de 25%</div>
+                </div>
+                
+                <div class="project-item">
+                    <span class="company-badge">SAFRAN Nacelles</span>
+                    <h3>Optimisation Ergonomique</h3>
+                    <p>Étude approfondie et amélioration des postes de travail en production aéronautique.</p>
+                    <div class="achievement">🎯 AMDEC sur ligne critique</div>
+                    <div class="achievement">💪 Réduction TMS de 35%</div>
+                    <div class="achievement">⚡ +15% de productivité</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tarifs">
+            <h2>Formules Flexibles</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Diagnostic</h3>
+                    <div class="price">500€ <span>/jour</span></div>
+                    <p>Idéal pour un premier état des lieux</p>
+                    <ul style="text-align: left; padding: 20px;">
+                        <li>✓ Audit flash 1 journée</li>
+                        <li>✓ Rapport de diagnostic</li>
+                        <li>✓ Plan d'actions prioritaires</li>
+                        <li>✓ Réunion de restitution</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Accompagnement</h3>
+                    <div class="price">800€ <span>/jour</span></div>
+                    <p>Pour un suivi régulier et efficace</p>
+                    <ul style="text-align: left; padding: 20px;">
+                        <li>✓ Missions de 3 à 10 jours</li>
+                        <li>✓ Mise en œuvre terrain</li>
+                        <li>✓ Formation équipes</li>
+                        <li>✓ Support continu</li>
+                        <li>✓ Reporting mensuel</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Projet Global</h3>
+                    <div class="price">Sur devis</div>
+                    <p>Solutions complètes sur-mesure</p>
+                    <ul style="text-align: left; padding: 20px;">
+                        <li>✓ Certification ISO</li>
+                        <li>✓ Transformation QHSE</li>
+                        <li>✓ Forfait longue durée</li>
+                        <li>✓ Équipe dédiée possible</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section" id="contact">
+            <h2>Prêt à transformer votre QHSE ?</h2>
+            <p style="font-size: 1.3em; margin-bottom: 30px;">
+                Disponible immédiatement pour vos projets urgents<br>
+                Intervention France entière • Remote possible
+            </p>
+            <a href="mailto:zbidamaroua2001@gmail.com" class="cta-button">📧 Demander un devis gratuit</a>
+            <a href="tel:+33605510113" class="cta-button">📞 Discutons de votre projet</a>
+            
+            <div style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 20px;">
+                <h3 style="color: white; margin-bottom: 20px;">Pourquoi me choisir ?</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
+                    <div>✅ Formation d'excellence (INP-ENSIACET)</div>
+                    <div>✅ Expérience grands groupes (Honeywell, SPIE, Safran)</div>
+                    <div>✅ Triple certification ISO</div>
+                    <div>✅ Approche pragmatique et ROI rapide</div>
+                    <div>✅ Bilingue français/anglais (TOEIC 965)</div>
+                    <div>✅ Disponibilité et réactivité maximales</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
